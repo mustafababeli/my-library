@@ -1,0 +1,314 @@
+body {
+    background-color: white;
+    margin: 0px;
+}
+
+
+.header {
+    display: flex;                                              /* header style section */
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: #c8d8e4;
+    padding: 5px;
+    align-items: center;
+    }
+
+    .header > img {
+    height: inherit;
+    width: inherit;
+    margin: 5px;
+    }
+
+    .header img {
+  height: 40px;
+  width: auto;
+  max-width: 140px;
+}
+
+    .register {
+    width: 80px;
+    height: 25px;
+    border-radius: 35px;
+    border-style: solid;
+    background-color: #52ab98;
+    color:white;
+    BORDER:none;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+    }
+
+    .links {
+    display: flex;
+    gap: 15px;
+    }
+    .links button{
+    background-color: #52ab98;
+    color:white;
+    BORDER:solid;
+    border-color: transparent;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+    margin-left: 10px;
+    }
+    .register:hover{
+        background-color: transparent;
+        border:solid
+    }
+
+    .links button:hover{
+    background-color: transparent;
+    border:solid;
+}
+
+
+.hero {
+    background-image: url("images/hero-background-image.png");              /* hero style section */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 700px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-card {
+    background-color: rgba(0, 0, 0, 0.644);            
+    display: flex;
+    flex-direction: column;
+    margin: 100px 100px 0px ;
+    padding: 100px 75px 100px 75px;
+    }
+
+
+    .hero h1 {
+  color : #52ab98;
+  font-size: 100px;
+  padding: 0px;
+  margin: 0px;
+  line-height: 0.8;
+    }
+
+    .hero p {
+    color: #c8d8e4;
+    font-size: 25px;
+}
+
+#library {                                        /* library       atyle section */
+  background-color: #f5f7fb;
+  padding: 40px;
+  display: grid;
+  gap: 18px;
+}
+
+
+.book-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  background: #ffffff;
+  border: 1px solid #c8d8e4;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.book-cover {
+  width: 110px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgb(0, 0, 0, 0.08);
+}
+.book-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+.text {
+  background-color: #95d4c767;
+  border: 1px solid #c8d8e4;
+  border-radius: 10px;
+  padding: 10px 12px;
+ display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  width: 100%;
+}
+.footer {
+  background-color: #c8d8e4;
+  padding: 18px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0f172a;
+}
+.read-btn {
+  width: 120px;             
+  padding: 8px 0;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+.read-btn.read {
+  background-color: #52ab98;  
+}
+
+.read-btn.not-read {
+  background-color: #c94a4a;   
+}
+.read-btn.unset {
+  background-color: #94a3b8;  
+}
+
+.read-btn {
+  align-self: flex-start;
+}
+
+
+
+  /* the below section is for resposivenesss, it was writt
+  en with the help of AI cuz i hav'nt learned respo
+  nsivness yet :( */
+
+  /* Make images not overflow */
+img { max-width: 100%; height: auto; }
+
+/* Library: responsive grid + card behavior */
+#library{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+/* Allow text to wrap instead of forcing overflow */
+.text { min-width: 0; }
+.text { word-break: break-word; }
+
+/* Tablet and down */
+@media (max-width: 900px) {
+  .hero {
+    height: auto;
+    grid-template-columns: 1fr;
+    padding: 30px 18px;
+  }
+
+  .hero-card {
+    margin: 0;
+    padding: 40px 22px;
+  }
+
+  .hero h1 {
+    font-size: 64px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+
+  #library {
+    padding: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* Phone */
+@media (max-width: 520px) {
+  .header {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+  .header img {
+  height: 28px;
+  max-width: 100px;
+}
+.header {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.links {
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.header img {
+  align-self: center;
+}
+.header img {
+  height: 36px;        /* slightly bigger than before */
+  max-width: 130px;   /* still capped */
+}
+.header img {
+  margin: 6px auto;
+}
+
+.links button,
+.register {
+  width: 100%;        /* stretch to viewport */
+  margin-left: 0;     /* remove desktop spacing */
+  height: 36px;
+}
+
+  .links {
+  width: 100%;
+  flex-direction: column;   /* stack vertically */
+  align-items: stretch;     /* stretch to viewport */
+  gap: 8px;
+}
+
+.links button {
+  width: 100%;              /* full width buttons */
+  margin-left: 0;           /* remove desktop offset */
+}
+
+  .links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .register {
+    margin-left: auto;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .hero-card {
+    padding: 26px 16px;
+  }
+
+  #library {
+    padding: 16px;
+    grid-template-columns: 1fr;
+  }
+
+  /* Card stacks on small screens */
+  .book-card {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .book-cover {
+    width: 90px;
+    height: 130px;
+  }
+
+  .read-btn {
+    width: 110px; /* still consistent */
+  }
+}
