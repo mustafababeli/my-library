@@ -1,20 +1,40 @@
 const library = [];
 
-function Book (title, author, pages, cover) {
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
 
-    // status is NOT set until user clicks
-    this.haveRead = null;
+class Book {
 
-    this.cover = cover;
+    #haveRead;
+    static generateId() {
+        return crypto.randomUUID();
+    }
+
+    constructor (title, author, pages, cover) {
+        this.id = Book.generateId();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+
+        // status is NOT set until user clicks
+        this.#haveRead = null;
+
+        this.cover = cover;
+    }
+
+    toggleHaveRead() {
+        this.#haveRead = !this.#haveRead;
+    }
+    get haveRead() {
+        return this.#haveRead
+    }
+
+    get statusText() {
+        if (this.#haveRead === null) return "Set status";
+        return this.#haveRead ? "Read" : "Not read";
+    }
 }
 
 function addNewBook (title, author, pages, cover) {
-    const book = new Book(title, author, pages, cover);
-    library.push(book);
+    library.push(new Book(title, author, pages, cover));
 }
 
 addNewBook("Macbeth", "William Shakespeare", 289, "images/macbeth.jpg");
@@ -42,21 +62,30 @@ for (let i = 0; i < library.length; i++) {
 
     const button = document.createElement("button");
     button.classList.add("read-btn", "unset");
-    button.textContent = "Set status";
+    button.textContent = book.statusText;
 
-    button.addEventListener("click", () => {
-        // first click sets it, after that it toggles
-        if (book.haveRead === null) {
-            book.haveRead = true;
-        } else {
-            book.haveRead = !book.haveRead;
+    function syncButtonToReadStatus() {
+        button.textContent = book.statusText;
+
+        if(book.haveRead === null) {
+            button.classList.add("unset");
+            button.classList.remove("read");
+            button.classList.remove("not-read");
+            return;
         }
-
-        button.textContent = book.haveRead ? "Read" : "Not Read";
 
         button.classList.remove("unset");
         button.classList.toggle("read", book.haveRead === true);
         button.classList.toggle("not-read", book.haveRead === false);
+
+    }
+
+    button.addEventListener("click", () => {
+        // first click sets it, after that it toggles
+        book.toggleHaveRead();
+        syncButtonToReadStatus();
+
+
     });
 
     card.appendChild(img);
@@ -66,4 +95,6 @@ for (let i = 0; i < library.length; i++) {
     text.appendChild(button);
 
     myLibrary.appendChild(card);
+
+    syncButtonToReadStatus();
 }
